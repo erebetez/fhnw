@@ -24,7 +24,7 @@ public class main_Aufgabe02 {
        boolean quit = false;
 
        do {
-	       System.out.println("Bitte Einkommen eingeben: ");
+	       System.out.println("\nBitte Einkommen eingeben: ");
 
     	   strInput = readInput() ;
 	       
