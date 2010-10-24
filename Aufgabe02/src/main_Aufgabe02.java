@@ -52,8 +52,7 @@ public class main_Aufgabe02 {
 					quit = true;
 				} else {
 					System.out.println("Bitte eine positive Zahl eingeben.");
-					System.out
-							.println("Negative Zahl oder 'q' um Programm zu beenden.");
+					System.out.println("Negative Zahl oder 'q' eingeben, um Programm zu beenden.");
 				}
 			}
 
