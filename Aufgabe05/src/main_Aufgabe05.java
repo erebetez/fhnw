@@ -21,7 +21,7 @@ public class main_Aufgabe05 {
 		System.out.println("Aufgabe05");
 
 		double a = readDblInput();
-		double b = readDblInput();
+		double b = readDblInput("Bitte zweite Zahl eingeben:");
 		double r = 0;
 		
 		do {
@@ -35,20 +35,20 @@ public class main_Aufgabe05 {
 
 	
 	// Reads from standard Input and return value if it is a number.
-	private static double readDblInput() {
+	private static double readDblInput(String strMessage) {
 		double dblInput;
 		String strInput = "";
 		// Creating a BufferReader from standard input.
 		BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
 
 		do {
-			System.out.println("Bitte eine Zahl eingeben:");
+			System.out.println(strMessage);
 			// Read input
 			try {
 				strInput = buffRead.readLine();
 			} catch (IOException e) {}			
 
-		} while (!Pattern.matches("-{0,1}[0-9]+[.]{0,1}[0-9]*", strInput));
+		} while (!Pattern.matches("-?[0-9]+[.]?[0-9]*", strInput));
 			
 		try { // convert String to double
 			dblInput = Double.valueOf(strInput);
@@ -58,4 +58,9 @@ public class main_Aufgabe05 {
 		
 		return dblInput;
 	}	
+	
+	// Wow, java can overload functions;) 
+	private static double readDblInput() {
+		return readDblInput("Bitte eine Zahl eingeben:");	
+	}
 }
