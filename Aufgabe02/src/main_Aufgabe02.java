@@ -87,8 +87,7 @@ public class main_Aufgabe02 {
 	private static String readInput() {
 		String strInput;
 		// Creating a BufferReader from standard input.
-		BufferedReader buffRead = new BufferedReader(new InputStreamReader(
-				System.in));
+		BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
 		// Read input
 		try {
 			strInput = buffRead.readLine();
