@@ -20,19 +20,31 @@ public class main_Aufgabe05 {
 	public static void main(String[] args) {
 		System.out.println("Aufgabe05");
 
-		double a = readDblInput();
-		double b = readDblInput("Bitte zweite Zahl eingeben:");
-		double r = 0;
+		double a = 1, b = 1;
+		double result;
 		
+		a = readDblInput();
+		b = readDblInput("Bitte zweite Zahl eingeben:");
+		
+		while (a != 0 && b != 0) {
+			result = ggt(a, b);
+	
+			System.out.println("Der Grösste gemeinsame Teiller von " + a + " und " + b + " ist " + result);
+			
+			a = readDblInput();
+			b = readDblInput("Bitte zweite Zahl eingeben:");
+		}
+	}
+
+	public static double ggt(double a, double b) {
+		double r = 0;
 		do {
 			r = a % b;
 			a = b;
 			b = r;
-		} while ( r != 0 && a != 0);
-		
-		System.out.println("Der Grösste gemeinsame Teiller ist " + a);
+		} while ( r != 0 && b != 0); // division with zero is evil
+		return a;
 	}
-
 	
 	// Reads from standard Input and return value if it is a number.
 	private static double readDblInput(String strMessage) {
@@ -42,7 +54,7 @@ public class main_Aufgabe05 {
 		BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
 
 		do {
-			System.out.println(strMessage);
+			System.out.print(strMessage + " ");
 			// Read input
 			try {
 				strInput = buffRead.readLine();
