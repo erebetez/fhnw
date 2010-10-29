@@ -36,6 +36,8 @@ public class main_FirstSteps {
 			winkel++;
 			System.out.println(winkel);
 		}
+		
+		System.out.println(Terminal.readInt());
 
 	}
 }
