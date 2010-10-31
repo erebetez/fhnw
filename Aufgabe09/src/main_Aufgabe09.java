@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 
@@ -23,8 +25,10 @@ public class main_Aufgabe09 {
 		int intRemoveSticks = 1;
 		boolean isHumanTurn = true;
 		
-		do {
-			printSticks(intSticks);
+		printSticks(intSticks);
+		
+		while ( intSticks > 1 ) {
+		
 			// Mensch
 			if (isHumanTurn) {
 				intRemoveSticks = readIntInput("\n1 bis 3 Sticks nehemen:");
@@ -33,89 +37,43 @@ public class main_Aufgabe09 {
 			} else {
 				System.out.println("\nComputer:");
 				intRemoveSticks = ki(intSticks);
-				System.out.println("Remove" + intRemoveSticks);
+//				System.out.println("Remove" + intRemoveSticks);
 			    isHumanTurn = true;
 			}
-			
-			
-			intSticks -= intRemoveSticks;
-						
-		} while (intSticks > 0);
-		
-		
-
-	}
-	
-	private static int ki(int sticks) {
-		int take = 1;
-		int newValue, temp;
-		int i;
-		
-		/*
-		 * anzahl stäbchen
-		 * mögliche züge (1-3)
-		 *   neuerWert = anzahl stäbchen - zug
-		 * 
-		 *    rekursives aufrufen
-		 *     bis 
-		 * 
-		 * 
-		 */
-		for (i = 1; i <= 3; i++) {
-			
-			newValue = sticks - i;
-			
-			System.out.println(newValue);
-			
-			temp = getTurn(newValue);
-			
-			if (temp == -1)
-				return i;
-			
-			if (newValue <= 0) {
-				take = 1; //verloren				
-			}
-			take = i;
-
+			intSticks -= intRemoveSticks;		
+			printSticks(intSticks);
 		}
 
-		return take;
+		if (isHumanTurn) {
+			System.out.println("\nGame Over");
+		} else {
+			System.out.println("\nGewonnen!");
+		}
 	}
 	
-	public static int getTurn(int sticks) {
-		int newValue, i;
-		for (i = 1; i <= 3; i++) {
-			newValue = sticks - i;
-			System.out.println(newValue);
-			// Das ist gut
-			if (newValue == 1) {
-				return -1;
-			}
-			
-			if (newValue <= 0) {
-				return 1;
-			}
-			
-			return getTurn(newValue);
-			
+	private static int ki(int intSticks) {
+		// TODO make that dynamic later
+		int maxRemovable = 3;
+
+		// verloren
+		if (intSticks == 1)
+			return 1;       
+		
+		// schlechter fall
+		if ( ( intSticks - 1) % (maxRemovable + 1) == 0 ) {			
+			Random myRandom = new Random( new Date().getTime());
+			int rand = myRandom.nextInt(3);
+			rand++;
+            return rand;            
+		} else {		
+			// rest ist zwischen 1 und maxRemovalbe
+			return ( intSticks - 1 ) % ( maxRemovable + 1 );
 		}
 		
-		
-		return 3;
-	}
-	
-	public static int ggt(int a, int b) {
-		int r = 0;
-		do {
-			r = a % b;
-			a = b;
-			b = r;
-		} while ( r != 0 && b != 0); // division with zero is evil
-		return a;
 	}
 	
 	private static void printSticks(int sticks) {
-		System.out.print(sticks);
+		System.out.print(sticks + "\t");
 		while (sticks > 0) {
 		    System.out.printf(" |");
 		    --sticks;
@@ -137,7 +95,7 @@ public class main_Aufgabe09 {
 				strInput = buffRead.readLine();
 			} catch (IOException e) {}			
 
-		} while (!Pattern.matches("-?[0-9]+", strInput));
+		} while (!Pattern.matches("[1-3]?", strInput));
 			
 		try { // convert String to double
 			intInput = Short.valueOf(strInput);
