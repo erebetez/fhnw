@@ -21,26 +21,60 @@ public class main_Aufgabe09 {
 	 * 
 	 */
 	public static void main(String[] args) {
+        boolean quit = false;
+		
 		int intSticks = 20;
+		int maxRemovable = 3;
+        
+        System.out.println("Willkommen zum Stäbchenspiel");
+        
+		while(!quit) {
+			System.out.println("\n1) Spielen");
+			System.out.println("2) Einstellungen");
+			System.out.println("3) Verlassen");
+						
+			switch(readIntInput("Eingabe:")) {
+			  case 1:
+				  game(intSticks, maxRemovable);	  
+				  break;
+			  case 2:
+				  intSticks = readIntInput("Anzahl Stäbchen setzen:");
+				  maxRemovable = readIntInput("Maximale Stäbhchenzahl pro Zug:");
+				  break;
+			  case 3:
+				 quit = true; 
+			     break;
+			}
+
+		}		
+		 System.out.println("\nTschüss.");		
+	}
+
+	
+	private static void game(int intSticks, int maxRemovable) {
 		int intRemoveSticks = 1;
 		boolean isHumanTurn = true;
 		
 		printSticks(intSticks);
 		
-		while ( intSticks > 1 ) {
-		
+		while ( intSticks > 1 ) {		
 			// Mensch
 			if (isHumanTurn) {
-				intRemoveSticks = readIntInput("\n1 bis 3 Sticks nehemen:");
-			   isHumanTurn = false;
+				intRemoveSticks = readIntInput("1 bis " + maxRemovable + " Sticks nehemen:");
+			    if (intRemoveSticks > 0 && intRemoveSticks <= maxRemovable ){
+				    isHumanTurn = false;
+			    } else {
+			    	intRemoveSticks = 0;	
+			    }
 			
 			} else {
-				System.out.println("\nComputer:");
-				intRemoveSticks = ki(intSticks);
-//				System.out.println("Remove" + intRemoveSticks);
+				System.out.print("Computer: ");
+				intRemoveSticks = ki(intSticks, maxRemovable);
+				System.out.println(intRemoveSticks);
 			    isHumanTurn = true;
 			}
-			intSticks -= intRemoveSticks;		
+			intSticks -= intRemoveSticks;
+			
 			printSticks(intSticks);
 		}
 
@@ -48,13 +82,11 @@ public class main_Aufgabe09 {
 			System.out.println("\nGame Over");
 		} else {
 			System.out.println("\nGewonnen!");
-		}
+		}	
 	}
-	
-	private static int ki(int intSticks) {
-		// TODO make that dynamic later
-		int maxRemovable = 3;
 
+	
+	private static int ki(int intSticks, int maxRemovable) {
 		// verloren
 		if (intSticks == 1)
 			return 1;       
@@ -62,7 +94,7 @@ public class main_Aufgabe09 {
 		// schlechter fall
 		if ( ( intSticks - 1) % (maxRemovable + 1) == 0 ) {			
 			Random myRandom = new Random( new Date().getTime());
-			int rand = myRandom.nextInt(3);
+			int rand = myRandom.nextInt(maxRemovable);
 			rand++;
             return rand;            
 		} else {		
@@ -73,13 +105,14 @@ public class main_Aufgabe09 {
 	}
 	
 	private static void printSticks(int sticks) {
-		System.out.print(sticks + "\t");
+		System.out.print("\n" + sticks + "\t");
 		while (sticks > 0) {
 		    System.out.printf(" |");
 		    --sticks;
 		}
 		System.out.println();
 	}
+	
 	
 	// Reads from standard Input and return value if it is a number.
 	private static int readIntInput(String strMessage) {
@@ -95,7 +128,7 @@ public class main_Aufgabe09 {
 				strInput = buffRead.readLine();
 			} catch (IOException e) {}			
 
-		} while (!Pattern.matches("[1-3]?", strInput));
+		} while (!Pattern.matches("[0-9]+", strInput));
 			
 		try { // convert String to double
 			intInput = Short.valueOf(strInput);
