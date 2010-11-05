@@ -21,13 +21,15 @@ public class main_Aufgabe04 {
         double b = readDblInput("--- B ---");
         double c = readDblInput("--- C ---");               
         
-        double dblSqrBase = Math.pow( b, 2 ) - 4 * a * c;        
+        double dblSqr = Math.sqrt(Math.pow( b, 2 ) - 4 * a * c);        
         
-        if ( dblSqrBase < 0 ) {
+        if ( dblSqr < 0 ) {
         	System.out.println("Kein reeles Resultat...");
+        } else if (dblSqr == 0) {
+        	System.out.println("x:" + ( b + dblSqr ) / ( 2 * a));
         } else {
-        	double x1 = ( -b + Math.sqrt( dblSqrBase ) ) / ( 2 * a);
-        	double x2 = ( -b - Math.sqrt( dblSqrBase ) )/ ( 2 * a);
+        	double x1 = ( -b + dblSqr ) / ( 2 * a);
+        	double x2 = ( -b - dblSqr ) / ( 2 * a);
 	        System.out.println("x1:" + x1 + " x2:" + x2);    	
         }        
 	}
