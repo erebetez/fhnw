@@ -7,30 +7,42 @@ import java.util.regex.Pattern;
 public class main_Aufgabe08 {
 
 	public static void main(String[] args) {
-
-		boolean quit = false;
 		int i, intStart;
+		int intMaxChar = 256;
+		int intRowLenght = 32;
 		
 		do {
 			intStart = readIntInput("\nBitte anfangs zeichen angeben:");
 			
-			if (intStart >= 0 && intStart <= 256) {
-				
-				for (i = intStart * 256; i < intStart * 256 + 256; i++) {
-					if (i % 32 == 0) {
-						System.out.println();
-						System.out.print("\t");
-						System.out.print( i );
-						System.out.print("\t");
-					} else {
-						System.out.print((char) i);
-					}			
+			if (intStart >= 0 && intStart <= intMaxChar) {
+
+				for (i = intStart * intMaxChar; i < intStart * intMaxChar + intMaxChar; ++i) {
+					if (i % intRowLenght == 0) {
+						System.out.printf("\n%1$10d", i );
+					}
+//					writeFormated(i);
+					System.out.print(String.format("%1$3s", (char) i));
 				}
-			} else {
-				quit = true;
 			}
+		} while(intStart >= 0);
+	}
+	
+	private static void writeFormated(int value){
+//		if (value < 10) System.out.print(" ");
+//		if (value < 100) System.out.print(" ");
+//		if (value < 1000) System.out.print(" ");
+		int scale = 10;
 		
-		} while(!quit);
+//		double x = Math.log10(value);
+		
+		
+		while (scale < 1000) {
+			System.out.print(" ");
+			scale *= 10;
+		}
+		
+		System.out.print((char) value);
+		
 	}
 	
 	

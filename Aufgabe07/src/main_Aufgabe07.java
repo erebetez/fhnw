@@ -12,9 +12,8 @@ public class main_Aufgabe07 {
 				System.out.print("\t");
 				System.out.print( i );
 				System.out.print("\t");
-			} else {
-				System.out.print((char) i);
-			}			
+			}
+			System.out.print((char) i);
 		}
 	}
 }
