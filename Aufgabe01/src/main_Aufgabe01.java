@@ -18,15 +18,20 @@ public class main_Aufgabe01 {
        double dblIncome = -1;
        double dblResult = 0;
        int    intPercent = 0;
-    	   
-       // Creating a BufferReader from standard input.   
-       BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
-
-       System.out.println("Bitte Einkommen eingeben: ");
+       String strInput;
+    	
+       if ( args.length == 1) {
+    	   strInput = args[0];
+       } else {       
+	       // Creating a BufferReader from standard input.   
+	       BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
+	
+	       System.out.println("Bitte Einkommen eingeben: ");
+	       
+	       // Read input
+	       strInput = buffRead.readLine();
+	   }
        
-       // Read input
-       String strInput = buffRead.readLine();
-
        // convert String to double
        try { 
            dblIncome = Double.valueOf( strInput );
