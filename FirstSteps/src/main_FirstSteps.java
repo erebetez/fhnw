@@ -2,6 +2,7 @@ public class main_FirstSteps {
 	public static void main(String[] args) {
 //		Jupii
 		System.out.println("Hallo welt! 'Super' ... 2");
+				
 		
 		int i;
 		double dbl = 9;
@@ -38,6 +39,8 @@ public class main_FirstSteps {
 		}
 		
 		System.out.println(Terminal.readInt());
+		
+		System.out.println(Terminal.readString().charAt(0));
 
 	}
 }
