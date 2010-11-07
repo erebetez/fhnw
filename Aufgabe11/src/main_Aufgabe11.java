@@ -5,11 +5,21 @@ public class main_Aufgabe11 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		System.out.println("Bitte Array eingeben");
-//		double[] myArray = new double[5];
-		double[] myArray = {1.3, 4, 5, 1, 1.1};
+        int i;		
+		double[] myArray;		
+//		double[] myArray = {1.3, 4, 5, 1, 1.1};
 		
-		System.out.println(summUpArray(myArray));
+		System.out.println("Bitte Array eingeben");
+		String strInput[] = Terminal.readString().split(" ");
+
+		myArray = new double[strInput.length];
+		for (i = 0; i < strInput.length; ++i) {
+			try {
+			   myArray[i] = Double.valueOf(strInput[i]);
+			} catch (NumberFormatException e) {} // error 
+		}		
+		
+		System.out.println("Summe: " + summUpArray(myArray));
 		
 		printArray(myArray);
 		reverseArray(myArray);
@@ -23,8 +33,7 @@ public class main_Aufgabe11 {
 		
 		for (i = 0; i < array.length; ++i) {
 			sum += array[i];			
-		}
-		
+		}		
 		return sum;
 	}
 	
@@ -45,11 +54,10 @@ public class main_Aufgabe11 {
 	
 	private static void printArray(double[] myArray){
 		int i;
-		System.out.print("{ ");
 		for (i = 0; i < myArray.length; ++i) {
 			 System.out.print(myArray[i] + " ");
 		}
-		System.out.println("}");
+		System.out.println();
 	}
 	
 	
