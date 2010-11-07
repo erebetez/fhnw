@@ -30,14 +30,17 @@ public class main_Aufgabe11 {
 	
 	private static void reverseArray(double[] array) {
 		int lenght = array.length, i;
-		double[] newArray = new double[lenght];
+		double[] tempArray = new double[lenght];
 		
+		// copy array
 		for (i = 0; i < lenght; ++i){
-			newArray[i] = array[(lenght - 1) - i];			
+			tempArray[i] = array[i];
 		}
 		
-		array = newArray;
-		printArray(array);
+		// reverse
+		for (i = 0; i < lenght; ++i){
+			array[i] = tempArray[(lenght - 1) - i];			
+		}
 	}
 	
 	private static void printArray(double[] myArray){
