@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.Random;
+//import java.util.Date;
+//import java.util.Random;
 import java.util.regex.Pattern;
 
 
@@ -25,6 +25,7 @@ public class main_Aufgabe09 {
 		
 		int intSticks = 20;
 		int maxRemovable = 3;
+		boolean isHumanTurn = true;
         
         System.out.println("Willkommen zum Stäbchenspiel");
         
@@ -35,11 +36,13 @@ public class main_Aufgabe09 {
 						
 			switch(readIntInput("Eingabe:")) {
 			  case 1:
-				  game(intSticks, maxRemovable);	  
+				  game(intSticks, maxRemovable, isHumanTurn);	  
 				  break;
 			  case 2:
 				  intSticks = readIntInput("Anzahl Stäbchen setzen:");
 				  maxRemovable = readIntInput("Maximale Stäbhchenzahl pro Zug:");
+				  System.out.print("Soll Mensch anfangen(j/n): ");
+				  isHumanTurn = Terminal.readBool();
 				  break;
 			  case 3:
 				 quit = true; 
@@ -51,9 +54,8 @@ public class main_Aufgabe09 {
 	}
 
 	
-	private static void game(int intSticks, int maxRemovable) {
+	private static void game(int intSticks, int maxRemovable, boolean isHumanTurn) {
 		int intRemoveSticks = 1;
-		boolean isHumanTurn = true;
 		
 		printSticks(intSticks);
 		
@@ -93,11 +95,11 @@ public class main_Aufgabe09 {
 		
 		// schlechter fall
 		if ( ( intSticks - 1) % (maxRemovable + 1) == 0 ) {			
-			Random myRandom = new Random( new Date().getTime());
-			int rand = myRandom.nextInt(maxRemovable);
-			rand++;
-            return rand;            
-		} else {		
+//			Random myRandom = new Random( new Date().getTime());
+//			int rand = myRandom.nextInt(maxRemovable);
+//          return ++rand; 
+            return (int) Math.round(Math.random() * maxRemovable + 0.5);
+		} else {
 			// rest ist zwischen 1 und maxRemovalbe
 			return ( intSticks - 1 ) % ( maxRemovable + 1 );
 		}
