@@ -21,19 +21,15 @@ public class main_Aufgabe13 {
 		int intTmp;
 		
 		for( int i = 0; i < buffer.length(); ++i ){
-//			 String	toUpperCase() 
-			chrTmp = buffer.charAt(i);
+			chrTmp = buffer.charAt(i);			
 			intTmp = (int) chrTmp;
 			
-			if (intTmp > 96 && intTmp <= (96 + 26) ){
+			if (intTmp >= (int) 'a' && intTmp <= (int) 'z' ){
 				intTmp -= 32;
 			}			
-			
-			if (intTmp > 64 && intTmp <= (64 + 26) ){
-				
-//				System.out.println((char) intTmp);
-//				System.out.println(intTmp - 64 - 1);
-				arr[intTmp - 64 - 1]++;
+
+			if (intTmp >= (int) 'A' && intTmp <= (int) 'Z' ){				
+				arr[intTmp - (int) 'A']++;
 			}
 		}
 	}
