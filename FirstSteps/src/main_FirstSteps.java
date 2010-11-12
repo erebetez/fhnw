@@ -42,5 +42,15 @@ public class main_FirstSteps {
 		
 		System.out.println(Terminal.readString().charAt(0));
 
+		
+	}
+	
+	public static int[][] generate2DArray(int height, int width){
+		int[][] result = new int[height][];
+		for( int i = 0; i < height; ++i) {
+			result[i] = new int[width];
+		}
+		return result;
+		
 	}
 }
