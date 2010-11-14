@@ -41,11 +41,16 @@ public class main_Aufgabe13 {
 		
 		System.out.println("Total chars: " + summ);
 		
-		System.out.println("Char | anzahl | prozent");
+		System.out.println("  |   n |   %");
+		System.out.println("--+-----+-------");
 		for( int i = 0; i < histogramm.length; ++i){
 			percent = (double) histogramm[i]/ (double) summ * 100;
+//			percent = Math.round(percent);
+			
 			temp = (char) (i + 64 + 1);			
-			System.out.println(temp + " | " + histogramm[i] + " | " + percent + "%");
+//			System.out.printf("%1: %2$3s | %3", temp, histogramm[i], percent);
+			System.out.printf("%1$1s | %2$3d | %3$5s\n", temp, histogramm[i], percent);
+//			System.out.println(temp + " | " + histogramm[i] + " | " + percent + "%");
 		}		
 	}
 	
