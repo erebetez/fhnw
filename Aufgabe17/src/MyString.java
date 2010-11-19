@@ -10,7 +10,7 @@ public class MyString {
 //		m_string = string;
 //	}
 	
-	public static int lenght (char[] string){
+	public static int totalLenght (char[] string){
 		int len = 0;
 		char buff;
 		try{

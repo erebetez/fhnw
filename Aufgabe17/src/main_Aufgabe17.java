@@ -17,7 +17,7 @@ public class main_Aufgabe17 {
 		char[] result = new char[capacity];
 		for (int i=0; i<s.length(); ++i)
 		    result[i] = s.charAt(i);
-		result[s.length()] = '\u0000';
+		result[s.length()] = (char) 0;
 		return result;
 	}	
 	
