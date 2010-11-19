@@ -7,6 +7,8 @@ public class main_Aufgabe13 {
 		StringBuilder buffer = new StringBuilder();
 		int[] histogramm = new int[26];
 		
+		long start = System.currentTimeMillis();
+		
 		do {
 		   strInput = Terminal.readString();
 		   buffer.append(strInput);			
@@ -14,22 +16,22 @@ public class main_Aufgabe13 {
 
 		analyze(histogramm, buffer);
 		printHistogram(histogramm);
+		
+		System.out.println(System.currentTimeMillis() - start + "ms");
 	}
 	
 	public static void analyze(int[] arr, StringBuilder buffer){
 		char chrTmp;
-		int intTmp;
-		
+
 		for( int i = 0; i < buffer.length(); ++i ){
 			chrTmp = buffer.charAt(i);			
-			intTmp = (int) chrTmp;
 			
-			if (intTmp >= (int) 'a' && intTmp <= (int) 'z' ){
-				intTmp -= 32;
+			if (chrTmp >= 'a' && chrTmp <=  'z' ){
+				arr[chrTmp - 'a']++;
 			}			
 
-			if (intTmp >= (int) 'A' && intTmp <= (int) 'Z' ){				
-				arr[intTmp - (int) 'A']++;
+			if (chrTmp >= 'A' && chrTmp <= 'Z' ){
+				arr[chrTmp - 'A']++;
 			}
 		}
 	}
@@ -37,20 +39,17 @@ public class main_Aufgabe13 {
 	public static void printHistogram(int[] histogramm){
 		int summ = summUpArray(histogramm);		
 		char temp = 0;
-		double percent;
+		float percent;
 		
 		System.out.println("Total chars: " + summ);
 		
 		System.out.println("  |   n |   %");
-		System.out.println("__|_____|_______");
+		System.out.println("__|_____|________");
 		for( int i = 0; i < histogramm.length; ++i){
-			percent = (double) histogramm[i]/ (double) summ * 100;
-//			percent = Math.round(percent);
+			percent = (float) histogramm[i]/ (float) summ * 100;
 			
-			temp = (char) (i + 64 + 1);			
-//			System.out.printf("%1: %2$3s | %3", temp, histogramm[i], percent);
-			System.out.printf("%1$1s | %2$3d | %3$f\n", temp, histogramm[i], percent);
-//			System.out.println(temp + " | " + histogramm[i] + " | " + percent + "%");
+			temp = (char) (i + 'A');			
+			System.out.printf("%1$1s | %2$3d | %3$6.2f%%\n", temp, histogramm[i], percent);
 		}		
 	}
 	
