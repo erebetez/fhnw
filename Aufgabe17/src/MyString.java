@@ -42,19 +42,16 @@ public class MyString {
 		int j = 0, i;
 		
 		for( i = lenght(destination); i < totalLenght(destination); ++i) {
-		   try{			  
-		        destination[i] = source[j++];
-		        System.out.println(destination);
-//				if (destination[i] != (char) 0) {
-//					destination[i] = (char) 0; 
-//				}		      
-		   }catch (ArrayIndexOutOfBoundsException e) {
-				if (destination[i] != (char) 0) {
-					destination[i] = (char) 0; 
-				}	
-		   } // error handling
-		}		
-
+		   if (j < lenght(source)) {
+			   try{			  
+			        destination[i] = source[j++];      
+			   }catch (ArrayIndexOutOfBoundsException e) {
+					if (destination[i] != (char) 0) {
+						destination[i] = (char) 0; 
+					}	
+			   } // error handling
+		   }
+		}
 	}
 	
 	public static int totalLenght (char[] string){
@@ -68,13 +65,32 @@ public class MyString {
 		} catch (ArrayIndexOutOfBoundsException e) {
 		} // error handling
 
-		System.out.println("totalcapacity" + len);
+//		System.out.println("totalcapacity" + len);
 		return len;
 		
 	}
 	
 	public static int compare(char[] string1, char[] string2){
-		return -1;
+		
+		int min;
+				
+		min = lenght(string1) < lenght(string2) ? lenght(string1) : lenght(string2);
+		System.out.println(min);
+		
+		for (int i = 0; i < min; ++i) {
+//			if( string1[i] > 'z'){
+//				string1[i] = string1[i] - 'A';
+//			}
+			
+			if( string1[i] < string2[i] ) {
+				return 1;				
+			}
+			if( string1[i] > string2[i] ) {
+				return -1;
+			}			
+		}
+		
+		return 0;
 	}
 	
 	public void show(){
