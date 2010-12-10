@@ -7,25 +7,26 @@ public class Lotto {
 	  // Sechser Array zurückgeben mit zufalzahlen
 	  int[] lotto = new int[6];
 	  int i = 0;
-	  boolean isOk = true;
-	  int rand;
-	  
+	  int rand;	  
 	  
 	  while (i < 6){
 	     rand = MyTools.getRandom(1, 42);
-	     
-	     for (int j = 0; j < lotto.length; ++j) {
-	    	 if (rand == lotto[j]) {
-	    		 isOk = false;
-	    	 }
-	     }
-	     
-	     if (isOk == true){
+	
+	     if (!isNumberInArray(rand, lotto)){
 	    	 lotto[i++] = rand;	    	 
 	     }
-	     isOk = true;
 	  }
 	  
-	  return lotto;
+	 return lotto;
   }
+  
+  private static boolean isNumberInArray(int number, int[] array) {
+	 for (int j = 0; j < array.length; ++j) {
+		 if (number == array[j]) {
+			 return true;
+		 }
+	 }
+	 return false;
+  }
+  
 }
