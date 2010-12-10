@@ -29,7 +29,7 @@ public class Agent {
 		this.firstname = firstname;
 		this.codeName = codeName;
 		this.age = age;
-		this.licenceToKill = licenceToKill;
+		this.licenceToKill = licenceToKill;		
 	}
 
 	// getters and setters
@@ -90,4 +90,41 @@ public class Agent {
 	public static int getAgentCount() {
 		return agentCount;
 	}
+	 
+	public boolean equals(Agent agent){
+		if (agent.getId() != this.id) {
+			return false;
+		}
+		if (!agent.getName().equals(this.name)) {
+			return false;
+		}
+		if (!agent.getFirstname().equals(this.firstname)) {
+			return false;
+		}
+		if (agent.getAge() != this.age) {
+			return false;
+		}
+		if (!agent.codeName.equals(this.codeName)) {
+			return false;
+		}
+		if (agent.isLicenceToKill() != this.licenceToKill) {
+			return false;
+		}
+		return true;
+	}
+	
+//	public Agent clone() {
+//		return this.clone();
+//	}
+	
+	public Agent myClone() {
+		Agent a = new Agent();
+		a.id = this.id;
+		a.codeName = this.codeName;
+		a.name = this.name;
+		a.firstname = this.firstname;
+		a.licenceToKill = this.licenceToKill;
+		return a;
+	}
+	
 }
