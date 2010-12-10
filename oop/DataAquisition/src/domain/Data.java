@@ -40,6 +40,14 @@ public class Data {
 		return "Data [x=" + x + ", y=" + y + "]";
 	}
 	
-	
+	public boolean equal(Data data){
+		if (data.getX() != this.x) {
+			return false;
+		}
+		if (data.getY() != this.y) {
+			return false;
+		}
+		return true;
+	}
 
 }
