@@ -13,6 +13,7 @@ public class main_Aufgabe14 {
 		printArray(array2);
 		printArray(mergeSortedArrays(array, array2));
 		
+		
 	}
 	
 	public static void StaightSort(int[] array, int start, int end){
@@ -40,6 +41,7 @@ public class main_Aufgabe14 {
 	public static void binSort(int[] array) {
 		int temp;
 		int[] newArray = new int[array.length];
+		int[] leftSortedArray = new int[2];
 		int left = 0, right = 2;
 		int i;
 		
@@ -50,13 +52,14 @@ public class main_Aufgabe14 {
 				array[i - 1] = array[i];
 				array[i] = temp;
 			}
+			mergeSortedArrays()
 		}
 		i = 0;
 		//Fixme
 		newArray[0] = array[0];
 		newArray[1] = array[1];
 		
-
+ 
 			
 		while (i < array.length) {
 			if (array[left] > array[right]) {
@@ -75,16 +78,6 @@ public class main_Aufgabe14 {
 		newArray = new int[maxLenght];
 		
 		for (int i = 0; i < maxLenght; ++i) {
-
-//			if (array1.length - 1 == i1) {
-//				newArray[i] = array2[i2];
-//				if (array2.length - 1 > i2) ++i2;
-//			} else
-//			
-//			if (array2.length - 1 == i2) {
-//				newArray[i] = array1[i1];
-//				if (array1.length - 1 > i1) ++i1;
-//			} else	
             try {
 			    if (array1[i1] < array2[i2]) {
 			    	newArray[i] = array1[i1++];
@@ -93,11 +86,15 @@ public class main_Aufgabe14 {
 			    }
 	    	} catch (ArrayIndexOutOfBoundsException e) {
 	    		
-	    		newArray[i] = array1[i1];
-	    		
+				if (array1.length > i1) {
+					newArray[i] = array1[i1++];
+					
+				} else
+				
+				if (array2.length > i2) {
+					newArray[i] = array2[i2++];
+				}
 	    	}
-
-
 		}		
 		return newArray;
 	}
