@@ -60,7 +60,8 @@ public class Stack02 {
 	 */
 	public boolean push(Object o) {
 		try {
-		   a[idx++] = o;
+		   a[idx] = o;
+		   ++idx;
 		   return true;
 		} catch (ArrayIndexOutOfBoundsException e ) {
 		   return false;

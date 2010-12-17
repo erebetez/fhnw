@@ -57,8 +57,11 @@ public class Stack01_test {
 		
 		System.out.println("Stack-Elemente mit aus dem Stack nehmen:");
 		while (tmpDouble != null) {
-			tmpDouble = (Double) myStack.pop();
-			System.out.println(tmpDouble.doubleValue());
+			try {
+				tmpDouble = (Double) myStack.pop();			
+				System.out.println(tmpDouble.doubleValue());
+			} catch (NullPointerException e) {				
+			}
 		}		
 	}
 	
