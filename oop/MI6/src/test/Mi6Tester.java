@@ -10,7 +10,7 @@ public class Mi6Tester {
 		    mi6.addAgent(new Agent());
 		}
 		
-		for (int i = 0; i < mi6.getAgentCount(); ++i) {
+		for (int i = 0; i < mi6.count(); ++i) {
 			System.out.println(mi6.getAgent(i));
 		}
 	}

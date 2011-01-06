@@ -10,7 +10,7 @@ public class Stack01_test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		testStack01();
+		testStack01();
 		testStack02();
 
 	}

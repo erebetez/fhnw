@@ -7,12 +7,14 @@ public class main_Aufgabe14 {
 		int start = 0;
 		
 		
-		StaightSort(array, start, array.length);
-		printArray(array);
-		StaightSort(array2, start, array2.length);
-		printArray(array2);
-		printArray(mergeSortedArrays(array, array2));
+//		StaightSort(array, start, array.length);
+//		printArray(array);
+//		StaightSort(array2, start, array2.length);
+//		printArray(array2);
+//		printArray(mergeSortedArrays(array, array2));
 		
+		mergeSort(array2);
+		printArray(array2);
 		
 	}
 	
@@ -38,10 +40,11 @@ public class main_Aufgabe14 {
 		}
 	}
 	
-	public static void binSort(int[] array) {
+	public static void mergeSort(int[] array) {
 		int temp;
 		int[] newArray = new int[array.length];
-		int[] leftSortedArray = new int[2];
+		int[] leftSortArray = new int[array.length / 2];
+		int[] rightSortArray = new int[array.length / 2];
 		int left = 0, right = 2;
 		int i;
 		
@@ -52,17 +55,21 @@ public class main_Aufgabe14 {
 				array[i - 1] = array[i];
 				array[i] = temp;
 			}
-			mergeSortedArrays()
+			
 		}
 		i = 0;
 		//Fixme
-		newArray[0] = array[0];
-		newArray[1] = array[1];
-		
- 
+//		newArray[0] = array[0];
+//		newArray[1] = array[1];
+
 			
-		while (i < array.length) {
+		while (i < newArray.length) {
+			leftSortArray = array;
+			rightSortArray = array;
+			
+			mergeSortedArrays();
 			if (array[left] > array[right]) {
+				
 				newArray[i++] = array[right++];				
 			} else {
 				newArray[i++] = array[left++];				

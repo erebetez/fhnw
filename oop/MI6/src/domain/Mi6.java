@@ -13,7 +13,7 @@ public class Mi6 {
 		return this.agentList.add(agent);
 	}
 
-	public int getAgentCount() {
+	public int count() {
 		return this.agentList.size();
 	}
 	
