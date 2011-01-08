@@ -21,6 +21,11 @@ public class Pool {
 			if (idx < 0 || idx >= this.dataPool.size()) return null;
 			return this.dataPool.get(idx);
 		}
+
+		@Override
+		public String toString() {
+			return "Pool [dataPool=" + dataPool + "]";
+		}
 	
 	
 }

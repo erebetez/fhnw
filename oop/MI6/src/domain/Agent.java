@@ -1,5 +1,7 @@
 package domain;
 
+import test.AgentTester;
+
 public class Agent {
 	// class Attributes (static)
 	private static int agentCount = 0;
@@ -83,8 +85,16 @@ public class Agent {
 	}
 	
 	public String toString(){
-		return this.id + ", " + this.name + ", " + this.firstname  + ", " +
-		       this.codeName + ", " + this.age + ", " + this.licenceToKill;
+		String formatString = "%1$18s%2$1s\n";
+//		String agent = String.format(formatString, "id: ", this.id);
+//		agent = agent.concat(String.format(formatString, "name: ", this.name));
+//		agent = agent.concat(String.format(formatString, "vorname: ", this.firstname));
+//		agent = agent.concat(String.format(formatString, "code name: ", this.codeName));
+//		agent = agent.concat(String.format(formatString, "age: ", this.age));
+//		agent = agent.concat(String.format(formatString, "licence to kill: ", this.licenceToKill));
+//		return agent;
+		
+		return this.id + ", " + this.name + ", " + this.firstname + ", " + this.codeName + ", " + this.age + ", " + this.licenceToKill;
 	}
 	
 	public static int getAgentCount() {

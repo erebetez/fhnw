@@ -18,6 +18,8 @@ public class PoolTester {
 		for (int i = 0; i < myData.getDataCount(); ++i) {
 			System.out.println(myData.getData(i));
 		}
+		
+		System.out.println(myData);
 
 	}
 

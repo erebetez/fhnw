@@ -23,14 +23,15 @@ public class AgentGui extends JFrame implements ActionListener {
 	
 	private Mi6 secretService;
 
-	public AgentGui(Mi6 secretService) {
+	public AgentGui() {
 		super("agent user Interface"); // Super muss erste anweisung im
 										// konstruktor sein.
+//		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setBounds(100, 100, 200, 200);
 		this.setLayout(new GridLayout(6, 2));
 		initGui();
 
-		this.secretService = secretService;
+		this.secretService = Mi6.getUniqueInstance();
 		
 		this.setVisible(true);
 	}
@@ -71,32 +72,53 @@ public class AgentGui extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {		
+//		System.out.println(e.getSource());
 		
-		System.out.println(e.getSource());
 		if( e.getSource().equals(btnOK) ){
-			newAgent();
+			saveNewAgent();
 		}
-		
-		if( e.getSource().equals(btnCancel) ){			
-			
-			System.out.println("Event cancel ausgelöst");
+
+		if( e.getSource().equals(btnCancel) ){	
+//			this.setVisible(false);
+	        dispose();
+	        System.exit(0); //calling the method is a must
 		}
 
 	}
 	
-	public void newAgent(){
-		if( secretService.addAgent(new Agent(
-				txtName.getText(),
-				txtFirstname.getText(),
-				txtCodename.getText(),
-				Integer.decode( txtAge.getText() ),
-				chkLicenceToKill.isSelected()				
-		)) ){
-			System.out.println("Agent hinzugefügt.");			
+	public void saveNewAgent(){
+		String name = txtName.getText();
+		String firstName = txtFirstname.getText();
+		String codename = txtCodename.getText();
+        int age = getAge();
+		Boolean ltk = chkLicenceToKill.isSelected();				
+		
+		if( secretService.addAgent(
+				new Agent(
+					name,
+					firstName,
+					codename,
+					age,
+					ltk				
+		        ) 
+		    ) 
+		){
+			
+			System.out.println("Agent hinzugefügt.");	
+			System.out.println(secretService);
 		}
 			
 	}
+	
+	private int getAge(){
+		try{
+			return Integer.decode( txtAge.getText() );
+		}catch(NumberFormatException e){
+			return 0;
+		}
+	}
+	
 	
 	
 	

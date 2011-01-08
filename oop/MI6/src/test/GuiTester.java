@@ -17,12 +17,7 @@ public class GuiTester {
 	}
 
 	public static void AgentTestGui(){
-		Mi6 mi6 = new Mi6();
-		new AgentGui(mi6);
-		
-		for( int i = 0; i < mi6.count(); ++i ){
-			System.out.println( mi6.getAgent(i) );
-		}
+		new AgentGui();
 	}
 	
 	
