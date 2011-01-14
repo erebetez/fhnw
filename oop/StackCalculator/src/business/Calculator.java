@@ -8,10 +8,10 @@ public class Calculator {
 		OperationContainer opContainer = new OperationContainer();
 		new Addition(opContainer, "+");
 		new Subtraction(opContainer, "-");
-//		new Multiplication(opContainer, "*");
-//		new Division(opContainer, "/");
-//		new Mean(opContainer,"mean");
-//		new Sum(opContainer, "sum");
+		new Multiplication(opContainer, "*");
+		new Division(opContainer, "/");
+		new Mean(opContainer,"mean");
+		new Sum(opContainer, "sum");
 		new CalculatorUI(opContainer);
 		}
 
