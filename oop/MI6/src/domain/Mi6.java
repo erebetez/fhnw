@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.Vector;
+import java.util.*;
 
-public class Mi6 {
+public class Mi6 extends Observable {
 	private static Mi6 uniqueInstance = null;
 	
 	private Vector<Agent> agentList;
@@ -19,7 +19,10 @@ public class Mi6 {
 	}
 	
 	public boolean addAgent(Agent agent){
-		return this.agentList.add(agent);
+		boolean ok = this.agentList.add(agent);
+		this.setChanged();
+		this.notifyObservers();
+		return ok;
 	}
 
 	public int count() {

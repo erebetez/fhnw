@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,7 +15,7 @@ import javax.swing.JList;
 
 import domain.Mi6;
 
-public class Mi6Gui extends JFrame implements ActionListener {
+public class Mi6Gui extends JFrame implements ActionListener, Observer {
 
 	private JLabel lblTitel = null;
 
@@ -37,6 +38,7 @@ public class Mi6Gui extends JFrame implements ActionListener {
 	public  Mi6Gui() {
 		super("mi6");
 		this.mi6 = Mi6.getUniqueInstance();
+		this.mi6.addObserver(this);
 		this.initialize();
 	}
 
@@ -166,6 +168,11 @@ public class Mi6Gui extends JFrame implements ActionListener {
 	     }	
 	}
 	public void actionPerformed(ActionEvent arg0) {
+		refreshList();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		refreshList();
 	}
 }

@@ -80,9 +80,7 @@ public class AgentGui extends JFrame implements ActionListener {
 		}
 
 		if( e.getSource().equals(btnCancel) ){	
-//			this.setVisible(false);
-	        dispose();
-	        System.exit(0); //calling the method is a must
+			this.setVisible(false);
 		}
 
 	}
