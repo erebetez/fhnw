@@ -2,8 +2,11 @@ package domain;
 
 import java.util.*;
 
+import db.*;
+
 public class Mi6 extends Observable {
 	private static Mi6 uniqueInstance = null;
+	private AgentDAO agentDAO;
 	
 	private Vector<Agent> agentList;
 
@@ -16,6 +19,9 @@ public class Mi6 extends Observable {
 	
 	private Mi6(){
 		agentList = new Vector<Agent>();
+		agentDAO = AgentDummyDAOImpl.getUniqueInstance();
+		//agentDAO = AgentDBDAOImpl.getUniqueInstance();
+		agentList = agentDAO.getAllAgents();
 	}
 	
 	public boolean addAgent(Agent agent){

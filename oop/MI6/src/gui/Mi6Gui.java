@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.WindowConstants;
 
 import domain.Mi6;
 
@@ -43,6 +44,7 @@ public class Mi6Gui extends JFrame implements ActionListener, Observer {
 	}
 
 	private void initialize() {
+		this.setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );
 		this.setBounds(100, 100, 400, 400);
 		this.add(getLblTitel(), BorderLayout.NORTH);
 		this.add(getlstAgents(), BorderLayout.CENTER);
@@ -54,6 +56,7 @@ public class Mi6Gui extends JFrame implements ActionListener, Observer {
 		this.add(buttons, BorderLayout.SOUTH);
 		this.add(getLblEast(), BorderLayout.EAST);
 		this.add(getLblWest(), BorderLayout.WEST);
+		this.refreshList();
 		this.setVisible(true);
 		// this.pack();
 	}

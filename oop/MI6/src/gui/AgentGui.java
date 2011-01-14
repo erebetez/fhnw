@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import domain.*;
 
 public class AgentGui extends JFrame implements ActionListener {
@@ -26,11 +28,11 @@ public class AgentGui extends JFrame implements ActionListener {
 	public AgentGui() {
 		super("agent user Interface"); // Super muss erste anweisung im
 										// konstruktor sein.
-//		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );
 		this.setBounds(100, 100, 200, 200);
 		this.setLayout(new GridLayout(6, 2));
 		initGui();
-
+		
 		this.secretService = Mi6.getUniqueInstance();
 		
 		this.setVisible(true);
@@ -116,9 +118,4 @@ public class AgentGui extends JFrame implements ActionListener {
 			return 0;
 		}
 	}
-	
-	
-	
-	
-
 }
