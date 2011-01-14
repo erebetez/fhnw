@@ -9,8 +9,8 @@ public class Addition extends Operation{
 	@Override
 	public boolean calcResult() {
         double a, b, c;
-        a = (Double) CalcStack.uniqueInstance().pop();
-		b = (Double) CalcStack.uniqueInstance().pop();
+        a = CalcStack.uniqueInstance().pop();
+		b = CalcStack.uniqueInstance().pop();
 		
 		c = a + b;
 		

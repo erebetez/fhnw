@@ -22,7 +22,7 @@ public class CalcStack {
 	
 	public boolean push(String string){
 		try { 
-			return push(new Double(string));			
+			return push(new Double(string));
 		} catch (NumberFormatException e) {
 			return false;
 		} 		
@@ -43,12 +43,17 @@ public class CalcStack {
 		   Double tmpDouble = (Double) operandList.remove(--idx);
 		   return tmpDouble.doubleValue();
 		} catch (ArrayIndexOutOfBoundsException e) {
+		   ++idx; // didn't work, so put the id to the last value.
 		   return 0;
 		}		
 	}
 
 	public void clearList(){
 		operandList.clear();
+	}
+	
+	public int size(){
+		return operandList.size();
 	}
 	
 	@Override
