@@ -23,8 +23,9 @@ public class EchoServer {
 				String inputLine, outputLine;
 	
 				while ((inputLine = in.readLine()) != null) {
+					System.out.println("got: " + inputLine);
 					outputLine = inputLine;
-					out.println(outputLine);
+					out.println("<balrog>: " + outputLine);
 				}
 				out.close();
 				in.close();

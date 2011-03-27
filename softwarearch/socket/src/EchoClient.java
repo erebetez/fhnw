@@ -12,7 +12,7 @@ public class EchoClient {
 			PrintWriter out = null;
 			BufferedReader in = null;
 	
-			echoSocket = new Socket("localhost", 9001);
+			echoSocket = new Socket("192.168.1.118", 9004);
 			out = new PrintWriter(echoSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(echoSocket
 					.getInputStream()));
