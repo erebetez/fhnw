@@ -1,0 +1,36 @@
+<project name="Statistics-Corba" default="compile">
+
+	<property name="idl.destination.directory" value="generated-sources" />
+	<property name="build.dir" value="bin" />
+
+	<target name="compile" depends="idl2java">
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" includeAntRuntime="false">
+			<src path="src" />
+			<src path="${idl.destination.directory}" />
+		</javac>
+	</target>
+
+	<target name="idl2java">
+		<mkdir dir="${idl.destination.directory}" />
+		<exec executable="idlj">
+			<arg line="-fall -td ${idl.destination.directory}" />
+			<arg value="Statistics.idl" />
+		</exec>
+	</target>
+
+	<target name="runClient">
+		<java classname="Client" fork="yes" dir="${build.dir}">
+			<arg value="Statistics.ref" />
+		</java>
+	</target>
+
+	<target name="runServer">
+		<java classname="Server" fork="yes" dir="${build.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${idl.destination.directory}" />
+	</target>
+</project>

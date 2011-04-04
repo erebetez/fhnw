@@ -1,0 +1,9 @@
+module math {
+
+interface Statistics {
+  typedef sequence< double > NumberSeq;
+  void setNumbers( in NumberSeq numbers );
+  double getAverage( );
+};
+
+};
