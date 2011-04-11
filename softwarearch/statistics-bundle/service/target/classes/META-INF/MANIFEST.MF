@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: org.example.math.service;version="1.0.0.SNAPSHOT"
+Built-By: etienne
+Tool: Bnd-1.15.0
+Bundle-Name: OSGi Statistics Service
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: The Math Example Software Foundation
+Build-Jdk: 1.6.0_24
+Bundle-Version: 1.0.0.SNAPSHOT
+Bnd-LastModified: 1302533395959
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.example.math.activator.Activator
+Bundle-Description: A simple OSGi statistics service
+Import-Package: org.example.math.service;version="[1.0,2)",org.osgi.fr
+ amework;version="[1.5,2)"
+Bundle-SymbolicName: org.example.math.statistics-service
+
