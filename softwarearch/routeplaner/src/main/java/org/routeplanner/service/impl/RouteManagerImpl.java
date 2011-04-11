@@ -16,15 +16,10 @@
  */
 package org.routeplanner.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.routeplanner.dao.RouteDao;
-import org.routeplanner.model.City;
-import org.routeplanner.model.Link;
+import org.routeplanner.model.*;
 import org.routeplanner.model.impl.LinkImpl;
 import org.routeplanner.service.RouteManager;
 

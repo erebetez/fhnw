@@ -21,7 +21,7 @@ public class Server {
 	    ORB orb = ORB.init(args, null);
 		try {
 		POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
-		rootpoa.the_POAManager().activate();
+		rootpoa.the_POAManager().activate(); // Nur auf server nögit.
 
 		// Create a statistics object
 		StatisticsImpl theStatistics = new StatisticsImpl();

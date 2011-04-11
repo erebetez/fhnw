@@ -1,41 +1,55 @@
-/*
- * Copyright (C) 2011 Ronald Tanner, CH-4123 Allschwil
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 3
- * of the License, or any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package org.routeplanner.feeder;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
 
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.routeplanner.service.RouteManager;
-import org.routeplanner.service.impl.RouteManagerImpl;
+import org.routeplanner.service.RouteManagerHelper;
+
 
 public class RouteFeederClient {
 
 	/**
-	 * utility application to load cities and links
 	 * @param args
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
+    Properties props = new Properties();
+    URL url = ClassLoader.getSystemResource("orb.properties");
+    props.load(url.openStream());
 
-			RouteManager routeMgr = new RouteManagerImpl();
+    ORB orb = ORB.init(args, props);
+
+    // get the root naming context
+    org.omg.CORBA.Object objRef;
+		try {
+			objRef = orb.resolve_initial_references("NameService");
+			NamingContextExt nc = NamingContextExtHelper.narrow(objRef);
+			org.omg.CORBA.Object obj = nc.resolve_str("RouteManager");
+
+			RouteManager routeMgr = RouteManagerHelper.narrow(obj);
 			
 			RouteFeeder feeder = new RouteFeeder( routeMgr );
 			System.out.println("Loading cities and routes..");
 			System.out.println( "total cities :" + feeder.loadCities("/cities.txt") );
-			System.out.println( "total routes :" + feeder.loadCities("/routes.txt") );
+			System.out.println( "total routes :" + feeder.loadRoutes("/routes.txt") );
+
+		} catch (InvalidName e) {
+			e.printStackTrace();
+		} catch (NotFound e) {
+			e.printStackTrace();
+		} catch (CannotProceed e) {
+			e.printStackTrace();
+		} catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
+			e.printStackTrace();
+		}
 
 	}
 
