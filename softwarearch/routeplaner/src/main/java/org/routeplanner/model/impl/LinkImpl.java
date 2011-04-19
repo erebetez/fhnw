@@ -22,7 +22,7 @@ import org.routeplanner.model.Link;
 /**
  * represents a connection between 2 city objects
  */
-public class LinkImpl implements Link{
+public class LinkImpl implements LinkPOA{
 	private City from;
 	private City to;
 	private Double weight;

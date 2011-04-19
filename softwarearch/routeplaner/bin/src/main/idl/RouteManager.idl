@@ -1,0 +1,52 @@
+
+module org {
+module routeplanner {
+
+module model {
+  struct City {
+    long id;
+    string name;
+    double latitude;
+    double longitude;
+    string country;
+  };
+
+  interface Link {
+	typedef sequence<org::routeplanner::model::City> CitySeq;
+	
+    readonly attribute City from;
+    readonly attribute City to;
+    readonly attribute double weight;
+    double getDirectDistance();
+    boolean isContainedIn( in CitySeq cities);
+  };
+
+};
+
+module service {
+  interface RouteManager {
+
+    typedef sequence<org::routeplanner::model::Link> LinkSeq;
+	typedef sequence<org::routeplanner::model::City> CitySeq;
+	typedef sequence<string> StringSeq;
+	
+    CitySeq findCitiesBetween(in org::routeplanner::model::City from, in org::routeplanner::model::City to);
+    
+	org::routeplanner::model::City findCity( in string name );
+	
+	org::routeplanner::model::Link createLink( in org::routeplanner::model::City cityFrom, in org::routeplanner::model::City cityTo );
+	
+	org::routeplanner::model::City createCity( in string cityName, in double cityLat, in double cityLon, in string country );
+	
+    LinkSeq findShortestPath(in string from, in string to);
+    
+    // return array with names of countries
+    StringSeq findCountries();
+    
+    LinkSeq findAllRoutesBetween( in CitySeq cities );
+    
+    CitySeq findCities( in string country );
+  };
+};
+};
+};

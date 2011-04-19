@@ -24,7 +24,7 @@ import org.routeplanner.model.impl.LinkImpl;
 import org.routeplanner.service.RouteManager;
 
 
-public class RouteManagerImpl implements RouteManager {
+public class RouteManagerImpl implements RouteManagerPOA {
 	private RouteDao routeDao;
 	private City[] cities;
 	private Link[] routes;
@@ -210,7 +210,15 @@ public class RouteManagerImpl implements RouteManager {
 	}
 
 	public Link createLink(City cityFrom, City cityTo, Double weight) {
-		return new LinkImpl( cityFrom, cityTo, weight );
+		LinkImpl link = new LinkImpl( cityFrom, cityTo, weight );
+		Link l = null;
+		try {
+			byte[] oid = poa.activate_object(link);
+			l= LinkHelper.narrow(poa.id_to_reference(oid));
+		} catch(Exeption ex) {
+			ex.printStackTrace();
+		}
+		retrun l;
 	}
 
 	/* (non-Javadoc)

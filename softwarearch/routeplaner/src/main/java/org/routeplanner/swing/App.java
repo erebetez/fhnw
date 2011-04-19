@@ -23,10 +23,18 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import org.routeplanner.dao.RouteDao;
-import org.routeplanner.feeder.RouteFeeder;
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.routeplanner.service.RouteManager;
-import org.routeplanner.service.impl.RouteManagerImpl;
+import org.routeplanner.service.RouteManagerHelper;
+
+import src.main.java.org.routeplanner.feeder.Properties;
+import src.main.java.org.routeplanner.feeder.URL;
+import src.main.java.org.routeplanner.feeder.org;
 
 /**
  * creates and manages the user interface of the routeplanner application
@@ -53,6 +61,32 @@ public class App implements Runnable {
 	}
 
 	public static void main(String[] args) throws IOException {
+	    Properties props = new Properties();
+	    URL url = ClassLoader.getSystemResource("orb.properties");
+	    props.load(url.openStream());
+
+	    ORB orb = ORB.init(args, props);
+
+	    // get the root naming context
+	    org.omg.CORBA.Object objRef;
+			try {
+				objRef = orb.resolve_initial_references("NameService");
+				NamingContextExt nc = NamingContextExtHelper.narrow(objRef);
+				org.omg.CORBA.Object obj = nc.resolve_str("RouteManager");
+
+				RouteManager routeMgr = RouteManagerHelper.narrow(obj);
+				
+			} catch (InvalidName e) {
+				e.printStackTrace();
+			} catch (NotFound e) {
+				e.printStackTrace();
+			} catch (CannotProceed e) {
+				e.printStackTrace();
+			} catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
+				e.printStackTrace();
+			}				
+		
+		
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
 		javax.swing.SwingUtilities.invokeLater(new App());
