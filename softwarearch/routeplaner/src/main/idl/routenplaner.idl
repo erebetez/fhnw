@@ -1,0 +1,30 @@
+
+module org{
+  module routeplanner{
+
+  module model{
+      interface City{
+
+      };
+
+      interface Link{
+          double getDirectDistance();
+          City from();
+          City to();
+      };
+  };
+
+   module service{
+     interface RouteManager{
+            typedef sequence<org::routeplanner::model::Link> LinkSeq;
+            typedef sequence<org::routeplanner::model::City> CitySeq;
+
+            LinkSeq findShortestPath( in string fromName, in string toName );
+
+            LinkSeq findAllRoutesBetween( in CitySeq cities );
+         };
+     };
+     
+       
+  };
+ };

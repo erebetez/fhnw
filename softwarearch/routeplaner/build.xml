@@ -1,0 +1,33 @@
+<project name="routeplanner" default="idl2java">
+
+  <property file="src/main/resources/orb.properties"/>
+	
+  <property name="idl.destination.directory" 
+            value="target/generated-sources/idlj" />
+
+  <target name="idl2java">
+    <mkdir dir="${idl.destination.directory}" />
+    <apply executable="idlj">
+      <arg line="-fall -td ${idl.destination.directory}"/>
+      
+      <fileset dir="src/main/idl">
+        <include name="**/*.idl" />
+      </fileset>
+      
+    </apply>
+  </target>
+
+  <target name="clean">
+  	<delete dir="${idl.destination.directory}" />
+  </target>
+	
+  <target name="run-orbd">
+  	<echo message="Starting orbd on port ${org.omg.CORBA.ORBInitialPort}" />
+  	<exec executable="orbd">
+  		<arg value="-ORBInitialPort" />
+  		<arg value="${org.omg.CORBA.ORBInitialPort}" />
+  		<arg value="-ORBInitialHost" />
+  		<arg value="${org.omg.CORBA.ORBInitialHost}" />
+  	</exec>
+	</target>
+</project>
